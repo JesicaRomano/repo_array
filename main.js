@@ -31,28 +31,27 @@ for(const cliente of clientes){
     console.log(cliente);
 }
 
-//Calculadora del interes que otorga un plazo fijo
-function plazoFijo(monto, plazo){
-    if((monto >30000 && monto <=50000) || (plazo >= 30 && plazo < 60 )){
-        return monto*(Math.pow(1+(30/100), plazo/360)-1);
-    }else if((monto >50000 && monto <=80000) || (plazo >= 60 && plazo < 90 )){
-        return monto*(Math.pow(1+(35/100), plazo/360)-1);
+//Creo un array vacio con las distintas alternativas de inversión
+let listaInversion = [];
+
+const registrarInversion = () => {
+    let tipoDeInversion = prompt('Ingrese \n 1 Plazo Fijo \n 2 Prestamo')
+    let importeInversion = Number(prompt('Ingrese importe que desea invertir o solicitar prestado'));
+
+    let inversion ={
+        tipo: tipoDeInversion,
+        importe: importeInversion
     }
-    else if((monto >80000 && monto <=100000) || (plazo >= 90 && plazo < 180 )){
-        return monto*(Math.pow(1+(40/100), plazo/360)-1);
+    
+    if (inversion.tipo === 1){
+        inversion.tipo = 'Plazo Fijo';
+    }else if(inversion.tipo === 2){
+        inversion.tipo = 'Prestamo';
     }
-    else if((monto >100000 && monto <=150000) || (plazo >= 180 && plazo < 360 )){
-        return monto*(Math.pow(1+(45/100), plazo/360)-1);
-    }
-    else{
-        return monto*(Math.pow(1+(50/100), plazo/360)-1);
-    }
+    
+    listaInversion.push(inversion);
+
+    alert('Tipo de inversión ' +inversion.tipo+ ' importe ' +inversion.importe);
 }
-console.log(plazoFijo(35000, 50));
-console.log(plazoFijo(35000, 100));
-console.log(plazoFijo(85000, 50));
-console.log(plazoFijo(35000, 180));
-console.log(plazoFijo(100000, 50));
-console.log(plazoFijo(150000, 90));
-console.log(plazoFijo(35000, 361));
-console.log(plazoFijo(180000, 300));
+
+registrarInversion();
